@@ -1,12 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-sans), sans-serif;
+  --font-sans: var(--font-body), sans-serif;
   --font-display: var(--font-display), sans-serif;
-  --font-mono: var(--font-mono), monospace;
+  --font-body: var(--font-body), sans-serif;
+
+  /* Brand Colors */
+  --color-saas: #CEFDDE;
+  --color-ot-kuoq: #03402C;
+  --color-saiyn: #0BDA51;
+  --color-qaladai: #FFF3EB;
+  --color-uuuet: #FFE0CC;
+  --color-kun: #E3FF00;
+  --color-ychuu: #4242F0;
+  --color-sardaana: #FC440F;
+  --color-tanhas: #601124;
+  --color-dirin: #0B0B26;
+  --color-olboq: #FF80AA;
+  --color-uruun-tuun: #D0D0FB;
+
+  /* Semantic mappings */
+  --color-paper: #FFF3EB;
+  --color-ink: #0B0B26;
+  --color-accent: #0BDA51;
+  --color-accent-dark: #03402C;
+  --color-accent-light: #CEFDDE;
+  --color-warm: #FFE0CC;
+  --color-highlight: #E3FF00;
+  --color-danger: #FC440F;
+  --color-royal: #4242F0;
+  --color-muted: #D0D0FB;
 }
 
-/* Custom Sun-Ray and Solar Animations */
+/* ========================================= */
+/* CUSTOM ANIMATIONS                         */
+/* ========================================= */
+
 @keyframes sun-spin-clockwise {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -20,11 +49,11 @@
 @keyframes solar-pulse {
   0%, 100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.7));
+    filter: drop-shadow(0 0 25px rgba(11, 218, 81, 0.4));
   }
   50% {
     transform: scale(1.04);
-    filter: drop-shadow(0 0 50px rgba(239, 68, 68, 0.95)) brightness(1.1);
+    filter: drop-shadow(0 0 50px rgba(11, 218, 81, 0.7)) brightness(1.05);
   }
 }
 
@@ -52,7 +81,21 @@
   }
 }
 
-/* Custom Animation Utility Classes */
+@keyframes form-breathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.03) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+/* ========================================= */
+/* ANIMATION UTILITIES                       */
+/* ========================================= */
+
 .animate-sun-spin {
   animation: sun-spin-clockwise 120s linear infinite;
 }
@@ -77,28 +120,63 @@
   animation: float-gentle 4s ease-in-out infinite;
 }
 
-/* Customize scrollbars for a clean editorial look */
+.animate-form-breathe {
+  animation: form-breathe 8s ease-in-out infinite;
+}
+
+/* ========================================= */
+/* SCROLLBAR                                 */
+/* ========================================= */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fbf9f5;
+  background: #FFF3EB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dbd8d0;
+  background: #D0D0FB;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c5c2b9;
+  background: #4242F0;
 }
 
-/* Custom patterns or styles for paper textured sections */
+/* ========================================= */
+/* PAPER TEXTURE                             */
+/* ========================================= */
+
 .paper-texture {
-  background-color: #faf9f6;
-  background-image: radial-gradient(#dbd8d0 0.5px, transparent 0.5px), radial-gradient(#dbd8d0 0.5px, #faf9f6 0.5px);
+  background-color: #FFF3EB;
+  background-image: radial-gradient(#D0D0FB 0.5px, transparent 0.5px), radial-gradient(#D0D0FB 0.5px, #FFF3EB 0.5px);
   background-size: 20px 20px;
   background-position: 0 0, 10px 10px;
+}
+
+/* ========================================= */
+/* BRAND FORM UTILITIES                      */
+/* ========================================= */
+
+.brand-form {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ========================================= */
+/* REDUCED MOTION                            */
+/* ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sun-spin,
+  .animate-sun-spin-fast,
+  .animate-sun-spin-counter,
+  .animate-solar-core,
+  .animate-aura,
+  .animate-float,
+  .animate-form-breathe {
+    animation: none;
+  }
 }

@@ -1,22 +1,18 @@
 import type {Metadata} from 'next';
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
-import './globals.css'; // Global styles
+import localFont from 'next/font/local';
+import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
+const abcGravity = localFont({
+  src: '../assets/fonts/ABCGravityCyrillicVariable-Trial.ttf',
   variable: '--font-display',
+  weight: '100 900',
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
+const suisseIntl = localFont({
+  src: '../assets/fonts/suisse-intl-regular.ttf',
+  variable: '--font-body',
+  weight: '400',
   display: 'swap',
 });
 
@@ -27,8 +23,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="ru" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} scroll-smooth`}>
-      <body className="font-sans bg-[#faf9f6] text-[#1c1c1c] antialiased min-h-screen" suppressHydrationWarning>
+    <html lang="ru" className={`${abcGravity.variable} ${suisseIntl.variable} scroll-smooth`}>
+      <body className="font-body bg-[#FFF3EB] text-[#0B0B26] antialiased min-h-screen" suppressHydrationWarning>
         {children}
       </body>
     </html>

@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), sans-serif;
+  --font-display: var(--font-display), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+/* Custom Sun-Ray and Solar Animations */
+@keyframes sun-spin-clockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes sun-spin-counter {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes solar-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.7));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 50px rgba(239, 68, 68, 0.95)) brightness(1.1);
+  }
+}
+
+@keyframes aura-flow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1) translate(0px, 0px);
+  }
+  33% {
+    opacity: 0.8;
+    transform: scale(1.05) translate(10px, -15px);
+  }
+  66% {
+    opacity: 0.7;
+    transform: scale(0.95) translate(-10px, 10px);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+/* Custom Animation Utility Classes */
+.animate-sun-spin {
+  animation: sun-spin-clockwise 120s linear infinite;
+}
+
+.animate-sun-spin-fast {
+  animation: sun-spin-clockwise 45s linear infinite;
+}
+
+.animate-sun-spin-counter {
+  animation: sun-spin-counter 160s linear infinite;
+}
+
+.animate-solar-core {
+  animation: solar-pulse 6s ease-in-out infinite;
+}
+
+.animate-aura {
+  animation: aura-flow 12s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* Customize scrollbars for a clean editorial look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fbf9f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dbd8d0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c5c2b9;
+}
+
+/* Custom patterns or styles for paper textured sections */
+.paper-texture {
+  background-color: #faf9f6;
+  background-image: radial-gradient(#dbd8d0 0.5px, transparent 0.5px), radial-gradient(#dbd8d0 0.5px, #faf9f6 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}

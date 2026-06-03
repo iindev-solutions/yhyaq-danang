@@ -1,0 +1,6 @@
+{
+  "name": "Yhyaq Danang 2026",
+  "description": "Приглашение на национальный якутский праздник Ысыах в Дананге (Вьетнам): яркие игры, хоровод осуохай, музыкальное солнце и песчаный берег.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

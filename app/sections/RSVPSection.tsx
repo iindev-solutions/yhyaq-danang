@@ -85,7 +85,7 @@ export default function RSVPSection() {
 			<div className="max-w-3xl mx-auto space-y-12">
 				<div className="text-center flex flex-col items-center gap-3">
 					<span className="inline-block font-body text-xs uppercase tracking-widest text-[#03402C] bg-[#CEFDDE] px-3.5 py-1.5 rounded-full font-bold">
-						RSVP
+					Анкета
 					</span>
 					<h3 className="font-display text-3xl sm:text-5xl font-black text-[#0B0B26] tracking-tight">
 						Будете ли вы с нами?

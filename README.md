@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# YHYAQ Danang 2026
 
-# Run and deploy your AI Studio app
+Сайт-приглашение на якутский праздник Ысыах в Дананге (Вьетнам).
 
-This contains everything you need to run your app locally.
+**[yhyaq-danang.vercel.app](https://iindev-solutions.github.io/yhyaq-danang/)**
 
-View your app in AI Studio: https://ai.studio/apps/cd69fb14-4a8f-4369-9ee8-a4698a5c99da
+## Стек
 
-## Run Locally
+- Next.js 15 (static export)
+- Tailwind CSS 4
+- GSAP ScrollTrigger
+- Framer Motion
+- Google Apps Script (RSVP → Sheets)
 
-**Prerequisites:**  Node.js
+## Разработка
 
+```bash
+npm install
+npm run dev
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Билд
+
+```bash
+npm run build    # → out/
+```
+
+## Деплой
+
+GitHub Pages через Actions — автодеплой при пуше в `v2`.
+
+## RSVP
+
+Форма отправляет данные в Google Sheets через GAS. Скрипт: `docs/google-apps-script.js`
+
+## Кредиты
+
+Сделано с ❤ [iindev](https://iindev.xyz)

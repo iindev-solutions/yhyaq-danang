@@ -18,7 +18,7 @@ const suisseIntl = localFont({
 
 export const metadata: Metadata = {
   title: 'Yhyaq Danang 2026 | Ысыах в Дананге',
-  description: 'Приглашение на национальный якутский праздник Ысыах в Дананге (Вьетнам): яркие игры, хоровод осуохай, музыкальное солнце и песчаный берег.',
+  description: 'Приглашение на национальный якутский праздник Ысыах в Дананге (Вьетнам): яркие игры, хоровод осуохай, музыкальное солнце и веселье.',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

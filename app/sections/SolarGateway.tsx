@@ -1,75 +1,141 @@
-'use client';
+"use client";
 
-import { motion } from 'motion/react';
+import { useRef, useState, useEffect } from "react";
+import gsap from "gsap";
 
 interface SolarGatewayProps {
-  onEnter: () => void;
+	onEnter: () => void;
 }
 
 export default function SolarGateway({ onEnter }: SolarGatewayProps) {
-  return (
-    <motion.div
-      id="solar-gateway"
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#03402C] text-white p-6 overflow-hidden"
-      exit={{
-        opacity: 0,
-        scale: 1.1,
-        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-      }}
-    >
-      {/* Background aura */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(11,218,81,0.15)_0%,transparent_70%)] animate-aura" />
+	const containerRef = useRef<HTMLDivElement>(null);
+	const formRef = useRef<HTMLDivElement>(null);
+	const wordmarkRef = useRef<HTMLImageElement>(null);
+	const textRef = useRef<HTMLParagraphElement>(null);
+	const btnRef = useRef<HTMLButtonElement>(null);
+	const [clicked, setClicked] = useState(false);
 
-      {/* Brand Ornament */}
-      <div className="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center">
-        <img
-          src="/assets/form-geometric-1.svg"
-          alt=""
-          className="absolute inset-0 w-full h-full opacity-40 animate-form-breathe brand-form"
-        />
-        <img
-          src="/assets/form-organic-1.svg"
-          alt=""
-          className="absolute inset-8 w-[calc(100%-4rem)] h-[calc(100%-4rem)] opacity-30 animate-float brand-form"
-        />
+	useEffect(() => {
+		if (!formRef.current) return;
 
-        {/* Logo */}
-        <div className="relative z-10 flex flex-col items-center gap-4">
-          <img
-            src="/assets/yhq-wordmark.svg"
-            alt="Yhyaq"
-            className="w-48 sm:w-64"
-          />
-          <span className="font-display text-[10px] sm:text-xs text-[#CEFDDE] tracking-[0.3em] uppercase">
-            Da Nang 2026
-          </span>
-        </div>
-      </div>
+		gsap.fromTo(
+			formRef.current,
+			{ opacity: 0, scale: 0.8 },
+			{ opacity: 1, scale: 1, duration: 1.4, ease: "power3.out" },
+		);
 
-      {/* CTA */}
-      <div className="z-10 text-center max-w-sm mt-12 space-y-6">
-        <motion.button
-          id="enter-button"
-          className="px-8 py-3.5 bg-[#0BDA51] hover:bg-[#09c748] text-[#03402C] rounded-full font-display font-semibold uppercase tracking-wider text-sm shadow-[0_4px_25px_rgba(11,218,81,0.4)] cursor-pointer transition-all duration-300"
-          whileTap={{ scale: 0.96 }}
-          onClick={onEnter}
-        >
-          Войти в мир Солнца
-        </motion.button>
+		if (wordmarkRef.current) {
+			gsap.fromTo(
+				wordmarkRef.current,
+				{ opacity: 0, y: -20 },
+				{ opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 0.3 },
+			);
+		}
 
-        <p className="text-xs text-[#CEFDDE]/70 font-body tracking-wide px-4">
-          Включите звук на устройстве перед входом для атмосферного музыкального обряда
-        </p>
-      </div>
+		if (textRef.current) {
+			gsap.fromTo(
+				textRef.current,
+				{ opacity: 0, y: 20 },
+				{ opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 0.6 },
+			);
+		}
 
-      {/* Bottom bar */}
-      <div className="absolute bottom-6 left-0 right-0 py-2 border-t border-white/10 bg-white/5 opacity-60 flex justify-center space-x-6 text-[10px] sm:text-xs font-body tracking-widest text-[#CEFDDE]">
-        <span>DA NANG</span>
-        <span>•</span>
-        <span>JUNE 20 2026</span>
-        <span>•</span>
-        <span>ETHNOFEST ЫСЫАХ</span>
-      </div>
-    </motion.div>
-  );
+		if (btnRef.current) {
+			gsap.fromTo(
+				btnRef.current,
+				{ opacity: 0, y: 10 },
+				{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: 1.0 },
+			);
+		}
+	}, []);
+
+	const handleEnter = () => {
+		if (clicked) return;
+		setClicked(true);
+
+		const tl = gsap.timeline({
+			onComplete: () => {
+				onEnter();
+			},
+		});
+
+		tl.to([btnRef.current, textRef.current], {
+			opacity: 0,
+			y: -20,
+			duration: 0.4,
+			ease: "power2.in",
+		});
+
+		tl.to(
+			formRef.current,
+			{
+				scale: 8,
+				opacity: 0,
+				duration: 1.2,
+				ease: "power2.in",
+			},
+			"-=0.2",
+		);
+
+		tl.to(
+			wordmarkRef.current,
+			{
+				y: -40,
+				opacity: 0,
+				duration: 0.6,
+				ease: "power2.in",
+			},
+			"-=0.8",
+		);
+
+		tl.to(
+			containerRef.current,
+			{ opacity: 0, duration: 0.5, ease: "power2.out" },
+			"-=0.3",
+		);
+	};
+
+	return (
+		<div
+			ref={containerRef}
+			id="solar-gateway"
+			className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#FFF3EB] p-6 overflow-hidden"
+		>
+			{/* Wordmark */}
+			<img
+				ref={wordmarkRef}
+				src="/assets/yhq-wordmark.svg"
+				alt="YHYAQ"
+				className="w-40 sm:w-52 mb-8 opacity-0"
+			/>
+
+			{/* Geometric form */}
+			<div ref={formRef} className="opacity-0 will-change-transform">
+				<img
+					src="/assets/form-geometric-4.svg"
+					alt=""
+					className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 animate-sun-spin"
+					style={{ animationDuration: "120s" }}
+				/>
+			</div>
+
+			{/* Yakut proverb */}
+			<p
+				ref={textRef}
+				className="mt-8 text-center text-[#4242F0] text-sm sm:text-base font-body tracking-wide max-w-md opacity-0"
+			>
+				Эйэҕэс киһи суола ордук, киһи киһитэ буол
+			</p>
+
+			{/* Enter button */}
+			<button
+				ref={btnRef}
+				onClick={handleEnter}
+				disabled={clicked}
+				className="mt-8 px-8 py-3.5 bg-[#4242F0] hover:bg-[#3535d0] text-white rounded-full font-display font-semibold uppercase tracking-wider text-sm shadow-lg transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed opacity-0"
+			>
+				Войти с музыкой
+			</button>
+		</div>
+	);
 }

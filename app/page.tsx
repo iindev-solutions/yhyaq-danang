@@ -12,6 +12,7 @@ import MapSection from './sections/MapSection';
 import RSVPSection from './sections/RSVPSection';
 import FooterSection from './sections/FooterSection';
 import AudioWidget from './components/AudioWidget';
+import MobileNav from './components/MobileNav';
 
 export default function YhyaqInvitation() {
   const [isEntered, setIsEntered] = useState(false);
@@ -57,6 +58,7 @@ export default function YhyaqInvitation() {
         <main className="min-h-screen flex flex-col text-[#0B0B26] selection:bg-[#CEFDDE]">
           {/* Audio Widget */}
           <AudioWidget isPlaying={isPlaying} onTogglePlay={handleTogglePlay} />
+          <MobileNav />
 
           {/* Sections */}
           <HeroSection />

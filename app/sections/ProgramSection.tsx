@@ -226,12 +226,11 @@ export default function ProgramSection() {
 					})}
 				</div>
 
-				{/* Entrance fee note */}
-				<div className="mt-12 bg-[#FC440F]/10 border border-[#FC440F]/20 rounded-3xl p-6 text-center">
-					<p className="text-sm text-[#601124] font-body">
-						<strong className="font-display text-lg font-black">Вход:</strong>{" "}
-						<strong className="text-[#FC440F] font-bold">~100 000 VND</strong>
-					</p>
+				{/* Entrance fee */}
+				<div className="mt-8 text-center">
+					<span className="inline-block px-4 py-1.5 bg-[#03402C]/10 text-[#03402C] rounded-full text-xs font-body font-bold tracking-wide">
+						Вход ~100 000 VND
+					</span>
 				</div>
 			</div>
 		</section>

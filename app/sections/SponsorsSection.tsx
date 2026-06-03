@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { Plus } from "lucide-react";
 
-const SPONSOR_COUNT = 10;
+const SPONSOR_COUNT = 6;
 
 export default function SponsorsSection() {
 	return (
@@ -24,7 +24,7 @@ export default function SponsorsSection() {
 					</p>
 				</div>
 
-				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+				<div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
 					{Array.from({ length: SPONSOR_COUNT }).map((_, i) => (
 						<motion.div
 							key={i}

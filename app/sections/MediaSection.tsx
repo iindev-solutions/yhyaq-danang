@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Play, X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -80,6 +80,12 @@ export default function MediaSection({ isGlobalAudioPlaying, onGlobalAudioPause,
 		setActivePhoto((activePhoto - 1 + photos.length) % photos.length);
 	};
 
+	const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+
+	const onImgLoad = useCallback((src: string) => {
+		setLoadedImages((prev) => new Set(prev).add(src));
+	}, []);
+
 	return (
 		<section
 			id="media-section"
@@ -103,15 +109,19 @@ export default function MediaSection({ isGlobalAudioPlaying, onGlobalAudioPause,
 					{videos.map((video, idx) => (
 						<motion.div
 							key={video.src}
-							className="relative rounded-2xl aspect-[9/16] overflow-hidden cursor-pointer group shadow-md"
+							className="relative rounded-2xl aspect-[9/16] overflow-hidden cursor-pointer group shadow-md bg-[#D0D0FB]/30"
 							whileHover={{ scale: 1.03 }}
 							onClick={() => openVideo(idx)}
 						>
+							{!loadedImages.has(video.thumb) && (
+								<div className="absolute inset-0 bg-[#D0D0FB]/30 animate-pulse" />
+							)}
 							<img
 								src={video.thumb}
 								alt={video.title}
-								className="w-full h-full object-cover"
+								className={`w-full h-full object-cover transition-opacity duration-500 ${loadedImages.has(video.thumb) ? "opacity-100" : "opacity-0"}`}
 								loading="lazy"
+								onLoad={() => onImgLoad(video.thumb)}
 							/>
 							<div className="absolute inset-0 bg-[#0B0B26]/30 group-hover:bg-[#0B0B26]/50 transition-colors duration-300 flex items-center justify-center">
 								<div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -135,14 +145,18 @@ export default function MediaSection({ isGlobalAudioPlaying, onGlobalAudioPause,
 						{photos.map((photo, idx) => (
 							<div
 								key={photo.src}
-								className="relative rounded-2xl aspect-square overflow-hidden cursor-pointer group shadow-sm"
+								className="relative rounded-2xl aspect-square overflow-hidden cursor-pointer group shadow-sm bg-[#D0D0FB]/30"
 								onClick={() => setActivePhoto(idx)}
 							>
+								{!loadedImages.has(photo.src) && (
+									<div className="absolute inset-0 bg-[#D0D0FB]/30 animate-pulse" />
+								)}
 								<img
 									src={photo.src}
 									alt=""
-									className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+									className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${loadedImages.has(photo.src) ? "opacity-100" : "opacity-0"}`}
 									loading="lazy"
+									onLoad={() => onImgLoad(photo.src)}
 								/>
 							</div>
 						))}

@@ -7,9 +7,6 @@ export default function HeroSection() {
       id="hero-section"
       className="relative flex flex-col items-center justify-center p-6 pt-16 pb-20 sm:pb-28 text-center bg-[#CEFDDE] border-b border-[#03402C]/10"
     >
-      {/* Decorative thin circle */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full border border-[#03402C]/5 animate-sun-spin pointer-events-none" />
-
       <div className="relative max-w-4xl mx-auto flex flex-col items-center space-y-4">
         {/* Brand Ornament */}
         <motion.div
@@ -70,7 +67,7 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          Впервые в солнечном Вьетнаме! Приглашаем вас отметить древний якутский праздник солнца и лета <strong className="font-extrabold text-[#03402C]">Ысыах</strong>. Окунитесь в священный алгыс, возьмитесь за руки в хороводе Осуохай, отведайте золотые оладьи и испытайте силу в традиционных играх дыгына!
+          Ысыах - священный праздник солнца и единения народа Саха. В прошлый раз мы принесли его во Вьетнам, и горы Дананга ответили теплом. Второй Ысыах - 20 июня. Хоровод Осуохай, Алгыс, игры Дыгына. Приходи.
         </motion.p>
 
         {/* Scroll Guide */}

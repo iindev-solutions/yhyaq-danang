@@ -39,7 +39,7 @@ export default function FooterSection() {
 							rel="noopener noreferrer"
 							className="hover:underline transition"
 						>
-							<span className="text-[#5eead4]">iind</span><span className="text-[#0BDA51]">ev</span>
+							<span className="text-[#5eead4]">iind</span><span className="text-white">ev</span>
 						</a>
 					</span>
 				</div>

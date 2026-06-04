@@ -77,7 +77,7 @@ export default function PhilosophySection() {
 									<img
 										src={card.icon}
 										alt=""
-										className="w-9 h-9 brand-form"
+										className="w-9 h-9 brand-form brightness-0 invert"
 									/>
 								</div>
 								<h4 className="font-display text-2xl font-bold text-[#0B0B26] mb-3">

@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "motion/react";
 import {
 	Handshake,
 	Flame,
@@ -11,15 +9,13 @@ import {
 	UtensilsCrossed,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const programBlocks = [
 	{
 		time: "13:00–13:50",
 		label: "Сбор",
 		title: "Встреча гостей",
-		desc: "Две девушки в национальных костюмах встречают гостей с алаадьы, салама и быырпах. Знакомство, общение и погружение в атмосферу.",
-		items: ["Встреча гостей", "Алаадьы, бырпах, салама"],
+		desc: "Девушки в национальных костюмах встречают гостей с алаадьы, салама и быырпах. Знакомство, общение и погружение в атмосферу.",
+		items: [],
 		icon: Handshake,
 		tag: "Сбор",
 		tagColor: "bg-[#CEFDDE] text-[#03402C]",
@@ -55,13 +51,13 @@ const programBlocks = [
 		time: "14:40–16:00",
 		label: "Обед",
 		title: "Обед и знакомство",
-		desc: "Традиционные якутские блюда, караоке, конкурс лучшего костюма и мастер-класс по пайрам.",
+		desc: "Традиционные якутские блюда, караоке, конкурс лучшего костюма и другие",
 		items: [
 			"14:40–16:00 Обед и знакомство",
 			"15:00–15:10 Уьун суьуох",
 			"15:10–15:20 Лучший костюм",
 			"15:10–16:00 Караоке",
-			"15:00–16:00 Мастер-класс Пайры",
+			"15:00–16:00 Мастер-класс по акриловым краскам",
 		],
 		icon: UtensilsCrossed,
 		tag: "Гастрономия",
@@ -109,42 +105,8 @@ const programBlocks = [
 ];
 
 export default function ProgramSection() {
-	const sectionRef = useRef<HTMLDivElement>(null);
-	const cardsRef = useRef<HTMLDivElement[]>([]);
-
-	useEffect(() => {
-		const section = sectionRef.current;
-		if (!section) return;
-
-		const ctx = gsap.context(() => {
-			// Animate each card from right + fade
-			cardsRef.current.forEach((card, i) => {
-				if (!card) return;
-				gsap.fromTo(
-					card,
-					{ x: 80, opacity: 0, scale: 0.95 },
-					{
-						x: 0,
-						opacity: 1,
-						scale: 1,
-						duration: 0.8,
-						ease: "power2.out",
-						scrollTrigger: {
-							trigger: card,
-							start: "top 85%",
-							toggleActions: "play none none none",
-						},
-					},
-				);
-			});
-		}, section);
-
-		return () => ctx.revert();
-	}, []);
-
 	return (
 		<section
-			ref={sectionRef}
 			id="program-section"
 			className="py-24 px-6 bg-white border-b border-[#D0D0FB]/50 relative"
 		>
@@ -166,31 +128,39 @@ export default function ProgramSection() {
 					{programBlocks.map((block, i) => {
 						const Icon = block.icon;
 						return (
-							<div
+							<motion.div
 								key={block.title}
-								ref={(el) => {
-									if (el) cardsRef.current[i] = el;
-								}}
-								className={`${block.cardBg} rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg`}
+								initial={{ y: 30, opacity: 0 }}
+								whileInView={{ y: 0, opacity: 1 }}
+								viewport={{ once: true, margin: "-10%" }}
+								transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
+								className={`${block.cardBg} rounded-3xl p-6 sm:p-8 transition-colors duration-300 hover:scale-[1.01] hover:shadow-lg`}
 							>
 								<div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-start">
 									{/* Left: time + icon */}
 									<div className="flex sm:flex-col items-center sm:items-start gap-3 sm:w-36 flex-shrink-0">
-										<span className={`text-2xl sm:text-3xl font-black ${block.cardText} font-display tracking-tight`}>
+										<span
+											className={`text-2xl sm:text-3xl font-black ${block.cardText} font-display tracking-tight`}
+										>
 											{block.time}
 										</span>
 										<div
 											className="w-10 h-10 rounded-xl flex items-center justify-center"
 											style={{ backgroundColor: `${block.accent}20` }}
 										>
-											<Icon className="w-5 h-5" style={{ color: block.accent }} />
+											<Icon
+												className="w-5 h-5"
+												style={{ color: block.accent }}
+											/>
 										</div>
 									</div>
 
 									{/* Right: content */}
 									<div className="space-y-3 flex-grow">
 										<div className="flex flex-wrap items-center gap-2">
-											<h4 className={`font-display text-xl sm:text-2xl font-black ${block.cardText}`}>
+											<h4
+												className={`font-display text-xl sm:text-2xl font-black ${block.cardText}`}
+											>
 												{block.title}
 											</h4>
 											<span
@@ -199,7 +169,9 @@ export default function ProgramSection() {
 												{block.tag}
 											</span>
 										</div>
-										<p className={`text-sm leading-relaxed font-body ${block.cardSub}`}>
+										<p
+											className={`text-sm leading-relaxed font-body ${block.cardSub}`}
+										>
 											{block.desc}
 										</p>
 
@@ -221,7 +193,7 @@ export default function ProgramSection() {
 										)}
 									</div>
 								</div>
-							</div>
+							</motion.div>
 						);
 					})}
 				</div>

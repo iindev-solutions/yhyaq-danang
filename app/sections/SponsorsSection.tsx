@@ -9,8 +9,12 @@ export default function SponsorsSection() {
 	return (
 		<section
 			id="sponsors-section"
-			className="py-24 px-6 bg-gradient-to-b from-[#03402C] to-[#0B0B26] text-[#CEFDDE]"
+			className="relative py-24 px-6 bg-gradient-to-b from-[#03402C] to-[#0B0B26] text-[#CEFDDE] overflow-hidden"
 		>
+			<div
+				className="absolute inset-0 bg-cover bg-center opacity-[0.06] pointer-events-none"
+				style={{ backgroundImage: "url('/bg-hero.webp')" }}
+			/>
 			<div className="max-w-5xl mx-auto space-y-12">
 				<div className="text-center flex flex-col items-center gap-3">
 					<span className="inline-block font-body text-xs uppercase tracking-widest text-[#CEFDDE] bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-full font-bold">

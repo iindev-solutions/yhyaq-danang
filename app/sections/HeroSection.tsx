@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero-section"
-      className="relative flex flex-col items-center justify-center p-6 pt-16 pb-20 sm:pb-28 text-center bg-[#CEFDDE] border-b border-[#03402C]/10"
+      className="relative flex flex-col items-center justify-center p-6 text-center bg-[#CEFDDE] border-b border-[#03402C]/10 min-h-screen"
     >
       <div className="relative max-w-4xl mx-auto flex flex-col items-center space-y-4">
         {/* Brand Ornament */}

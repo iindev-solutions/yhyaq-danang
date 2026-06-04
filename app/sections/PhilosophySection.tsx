@@ -1,10 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from "motion/react";
 
 const cards = [
 	{
@@ -46,85 +42,58 @@ const cards = [
 ];
 
 export default function PhilosophySection() {
-	const sectionRef = useRef<HTMLDivElement>(null);
-	const trackRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const section = sectionRef.current;
-		const track = trackRef.current;
-		if (!section || !track) return;
-
-		const ctx = gsap.context(() => {
-			gsap.to(track, {
-				x: () => -(track.scrollWidth - window.innerWidth),
-				ease: "none",
-				scrollTrigger: {
-					trigger: section,
-					start: "top top",
-					end: () => `+=${track.scrollWidth - window.innerWidth}`,
-					pin: true,
-					pinSpacing: true,
-					scrub: 1,
-					invalidateOnRefresh: true,
-				},
-			});
-		}, section);
-
-		return () => ctx.revert();
-	}, []);
-
 	return (
 		<section
-			ref={sectionRef}
 			id="philosophy-section"
-			className="h-screen bg-[#FFF3EB] overflow-hidden relative border-b border-[#D0D0FB]/50 z-50"
+			className="py-24 px-6 bg-[#FFF3EB] border-b border-[#D0D0FB]/50"
 		>
-			{/* Header */}
-			<div className="absolute top-8 left-6 z-10">
-				<span className="inline-block font-body text-xs uppercase tracking-widest text-[#FC440F] bg-[#FFE0CC] px-3.5 py-1.5 rounded-full font-bold">
-					Обряды и смыслы
-				</span>
-				<h3 className="font-display text-3xl sm:text-5xl font-black text-[#0B0B26] mt-2">
-					Традиции Ысыаха
-				</h3>
-				<p className="text-[#0B0B26]/60 max-w-md text-sm sm:text-base font-body mt-2">
-					Каждый обряд праздника несёт в себе силу возрождения, тепла и священного солнца
-				</p>
-			</div>
+			<div className="max-w-5xl mx-auto">
+				<div className="text-center flex flex-col items-center gap-3 mb-16">
+					<span className="inline-block font-body text-xs uppercase tracking-widest text-[#FC440F] bg-[#FFE0CC] px-3.5 py-1.5 rounded-full font-bold">
+						Обряды и смыслы
+					</span>
+					<h3 className="font-display text-3xl sm:text-5xl font-black text-[#0B0B26]">
+						Традиции Ысыаха
+					</h3>
+					<p className="text-[#0B0B26]/60 max-w-md text-sm sm:text-base font-body">
+						Каждый обряд праздника несёт в себе силу возрождения, тепла и священного солнца
+					</p>
+				</div>
 
-			{/* Horizontal track */}
-			<div
-				ref={trackRef}
-				className="flex gap-6 h-full items-center pl-6 pr-[50vw] pt-32 will-change-transform"
-			>
-				{cards.map((card) => (
-					<div
-						key={card.title}
-						className="flex-shrink-0 w-[80vw] sm:w-[60vw] lg:w-[40vw] max-w-[520px] h-[60vh] max-h-[500px] bg-white p-8 rounded-3xl border border-[#D0D0FB]/50 shadow-sm flex flex-col justify-between"
-					>
-						<div>
-							<div
-								className={`w-14 h-14 rounded-2xl ${card.bg} flex items-center justify-center mb-8`}
-							>
-								<img
-									src={card.icon}
-									alt=""
-									className="w-9 h-9 brand-form"
-								/>
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					{cards.map((card, i) => (
+						<motion.div
+							key={card.title}
+							initial={{ y: 30, opacity: 0 }}
+							whileInView={{ y: 0, opacity: 1 }}
+							viewport={{ once: true, margin: "-10%" }}
+							transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
+							className="bg-white px-5 py-8 rounded-3xl border border-[#D0D0FB]/50 shadow-sm flex flex-col justify-between"
+						>
+							<div>
+								<div
+									className={`w-14 h-14 rounded-2xl ${card.bg} flex items-center justify-center mb-8`}
+								>
+									<img
+										src={card.icon}
+										alt=""
+										className="w-9 h-9 brand-form"
+									/>
+								</div>
+								<h4 className="font-display text-2xl font-bold text-[#0B0B26] mb-3">
+									{card.title}
+								</h4>
+								<p className="text-sm text-[#0B0B26]/60 leading-relaxed font-body">
+									{card.desc}
+								</p>
 							</div>
-							<h4 className="font-display text-2xl font-bold text-[#0B0B26] mb-3">
-								{card.title}
-							</h4>
-							<p className="text-sm text-[#0B0B26]/60 leading-relaxed font-body">
-								{card.desc}
-							</p>
-						</div>
-						<div className="pt-6 border-t border-[#D0D0FB]/30 mt-6 flex justify-between items-center text-[11px] font-body text-[#0B0B26]/40">
-							<span>{card.tag}</span>
-							<span className={card.accent}>{card.sakha}</span>
-						</div>
-					</div>
-				))}
+							<div className="pt-6 border-t border-[#D0D0FB]/30 mt-6 flex justify-between items-center text-[11px] font-body text-[#0B0B26]/40">
+								<span>{card.tag}</span>
+								<span className={card.accent}>{card.sakha}</span>
+							</div>
+						</motion.div>
+					))}
+				</div>
 			</div>
 		</section>
 	);

@@ -10,11 +10,11 @@ const tips = [
 	},
 	{
 		title: "Что взять с собой",
-		text: "Еду по возможности, солнцезащитные очки, коврик для хоровода, головной убор.",
+		text: "Еду по возможности, солнцезащитные очки, головной убор. Праздничное настроение^_^",
 	},
 	{
 		title: "Для детей",
-		text: "Тенистый детский уголок с играми и питьевой водой.",
+		text: "Программа детских активностей уточняется — следите за обновлениями.",
 	},
 	{
 		title: "Игры Дыгына",
@@ -61,13 +61,16 @@ interface WeatherData {
 async function fetchWeather(): Promise<WeatherData> {
 	try {
 		const res = await fetch(
-			`https://api.open-meteo.com/v1/forecast?latitude=16.13&longitude=108.05&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=Asia/Ho_Chi_Minh&start_date=${EVENT_DATE}&end_date=${EVENT_DATE}`
+			`https://api.open-meteo.com/v1/forecast?latitude=16.13&longitude=108.05&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=Asia/Ho_Chi_Minh&start_date=${EVENT_DATE}&end_date=${EVENT_DATE}`,
 		);
 		const data = await res.json();
 		const idx = data.daily.time.indexOf(EVENT_DATE);
 		if (idx === -1) return fallbackWeather();
 		const code = data.daily.weathercode[idx];
-		const wmo = WMO_CODES[code] || { label: "Переменная облачность", icon: "⛅" };
+		const wmo = WMO_CODES[code] || {
+			label: "Переменная облачность",
+			icon: "⛅",
+		};
 		return {
 			tempMax: Math.round(data.daily.temperature_2m_max[idx]),
 			tempMin: Math.round(data.daily.temperature_2m_min[idx]),

@@ -10,6 +10,7 @@ import MediaSection from './sections/MediaSection';
 import SponsorsSection from './sections/SponsorsSection';
 import MapSection from './sections/MapSection';
 import RSVPSection from './sections/RSVPSection';
+import ThankYouSection from './sections/ThankYouSection';
 import FooterSection from './sections/FooterSection';
 import AudioWidget from './components/AudioWidget';
 import MobileNav from './components/MobileNav';
@@ -68,6 +69,7 @@ export default function YhyaqInvitation() {
           <SponsorsSection />
           <MapSection />
           <RSVPSection />
+          <ThankYouSection />
           <FooterSection />
         </main>
       )}

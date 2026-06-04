@@ -14,12 +14,12 @@ const videos = [
 	{
 		src: "/archive/3660394551304630884.mp4",
 		title: "Ысыах в Дананге",
-		thumb: "/archive/IMG_0302.JPG",
+		thumb: "/archive/1.webp",
 	},
 	{
 		src: "/archive/3665627404258512445.mp4",
 		title: "Праздник в горах",
-		thumb: "/archive/IMG_0308.JPG",
+		thumb: "/archive/2.webp",
 	},
 	{
 		src: "/archive/IMG_0331.MP4",
@@ -29,12 +29,17 @@ const videos = [
 	{
 		src: "/archive/IMG_0497.MOV",
 		title: "Хоровод Оьуохай",
-		thumb: "/archive/IMG_0280.JPG",
+		thumb: "/archive/4.webp",
 	},
 	{
 		src: "/archive/IMG_6560.MOV",
 		title: "Обряд Алгыс",
-		thumb: "/archive/IMG_0302.JPG",
+		thumb: "/archive/5.webp",
+	},
+	{
+		src: "/archive/3665652067493768470(1).mp4",
+		title: "Моменты Ысыаха",
+		thumb: "/archive/6.webp",
 	},
 ];
 
@@ -105,7 +110,7 @@ export default function MediaSection({ isGlobalAudioPlaying, onGlobalAudioPause,
 				</div>
 
 				{/* Videos */}
-				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-16">
+				<div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-16">
 					{videos.map((video, idx) => (
 						<motion.div
 							key={video.src}

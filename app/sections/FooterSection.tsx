@@ -24,22 +24,22 @@ export default function FooterSection() {
 					</a>
 				</div>
 
-				<p className="text-[10px] text-[#CEFDDE]/30 uppercase tracking-widest text-center">
-					КЮН АЙЫЫ ТАҤАРА БАРЫБЫТЫН ХАРЫСТААТЫН!
+				<p className="text-[10px] text-[#CEFDDE]/30  tracking-widest text-center">
+					kyn ajɯ: taŋara barɯbɯtɯn qarɯsta:tɯn!
 				</p>
 
 				<div className="text-[11px] font-body flex flex-col items-center gap-1">
 					<span>© YHYAQ Danang, 2026</span>
 					<span>
-						Сделано с{" "}
-						<span className="text-[#FC440F]">&#9829;</span>{" "}
+						Сделано с <span className="text-[#FC440F]">&#9829;</span>{" "}
 						<a
 							href="https://iindev.xyz"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="hover:underline transition"
 						>
-							<span className="text-[#5eead4]">iind</span><span className="text-white">ev</span>
+							<span className="text-[#5eead4]">iind</span>
+							<span className="text-white">ev</span>
 						</a>
 					</span>
 				</div>

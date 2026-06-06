@@ -6,7 +6,11 @@ import { Info, CheckCircle2, MapPin } from "lucide-react";
 const tips = [
 	{
 		title: "Вход",
-		text: "~100 000 VND. Место проведения - Camping Dừa Xanh.",
+		text: "~100 000 VND. Место проведения — KING GARDEN CAMPING.",
+	},
+	{
+		title: "Трансфер",
+		text: "Возможно будет организован трансфер — следите за новостями.",
 	},
 	{
 		title: "Что взять с собой",
@@ -61,7 +65,7 @@ interface WeatherData {
 async function fetchWeather(): Promise<WeatherData> {
 	try {
 		const res = await fetch(
-			`https://api.open-meteo.com/v1/forecast?latitude=16.13&longitude=108.05&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=Asia/Ho_Chi_Minh&start_date=${EVENT_DATE}&end_date=${EVENT_DATE}`,
+			`https://api.open-meteo.com/v1/forecast?latitude=16.1388&longitude=108.0514&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=Asia/Ho_Chi_Minh&start_date=${EVENT_DATE}&end_date=${EVENT_DATE}`,
 		);
 		const data = await res.json();
 		const idx = data.daily.time.indexOf(EVENT_DATE);
@@ -123,14 +127,14 @@ export default function MapSection() {
 					{/* Map */}
 					<div className="lg:col-span-2 rounded-[2.5rem] overflow-hidden border border-[#D0D0FB]/50 shadow-md aspect-[4/3]">
 						<iframe
-							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5!2d108.0501371!3d16.1301483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314221eea7d19f89%3A0x947a9a670772cc40!2sCamping%20D%E1%BB%ABa%20Xanh!5e0!3m2!1sen!2s!4v1"
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3832.5853086109687!2d108.0513884!3d16.138738999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142211725ee549f%3A0xc5c6ef048e00c068!2sKING%20GARDEN%20CAFE%20-%20CAMPING!5e0!3m2!1sru!2s!4v1780769770790!5m2!1sru!2s"
 							width="100%"
 							height="100%"
 							style={{ border: 0 }}
 							allowFullScreen
 							loading="lazy"
 							referrerPolicy="no-referrer-when-downgrade"
-							title="Место проведения Ысыах"
+							title="Место проведения Ысыах — KING GARDEN CAMPING"
 							className="w-full h-full"
 						/>
 					</div>
@@ -165,8 +169,16 @@ export default function MapSection() {
 									Адрес
 								</span>
 								<p className="text-sm font-body text-[#03402C] mt-1">
-									Camping Dừa Xanh, Дананг
+									KING GARDEN CAMPING, Дананг
 								</p>
+								<a
+									href="https://maps.app.goo.gl/jZ9WLNP39rNxFyzc9"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-xs font-body text-[#03402C]/70 mt-1 underline hover:text-[#03402C] transition"
+								>
+									Открыть в Google Maps →
+								</a>
 							</div>
 						</div>
 

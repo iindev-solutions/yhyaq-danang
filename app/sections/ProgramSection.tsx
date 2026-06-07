@@ -201,7 +201,7 @@ export default function ProgramSection() {
 				{/* Entrance fee */}
 				<div className="mt-8 text-center">
 					<span className="inline-block px-4 py-1.5 bg-[#03402C]/10 text-[#03402C] rounded-full text-xs font-body font-bold tracking-wide">
-						Вход ~100 000 VND
+						Вход ~130 000 VND
 					</span>
 				</div>
 			</div>

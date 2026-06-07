@@ -6,7 +6,7 @@ import { Info, CheckCircle2, MapPin } from "lucide-react";
 const tips = [
 	{
 		title: "Вход",
-		text: "~100 000 VND. Место проведения — KING GARDEN CAMPING.",
+		text: "~130 000 VND. Место проведения — KING GARDEN CAMPING.",
 	},
 	{
 		title: "Трансфер",

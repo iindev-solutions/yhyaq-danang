@@ -5,6 +5,8 @@ export interface RSVP {
   contact: string;
   willDanceOsuokhay: boolean;
   willPlaySports: boolean;
+  hasChildren: boolean;
+  childrenCount: number;
   dietaryNote: string;
   createdAt: string;
 }

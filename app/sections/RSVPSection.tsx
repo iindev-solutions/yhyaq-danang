@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Loader2 } from "lucide-react";
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfIAXxWv9unPufBCx51Ckylhk5gfmfcIpwePyqSgYpFl20zIJ8-kfrKC5vscpcpNHb/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby-cWcjNuJzRIaU5KF6Lk951M0dZENm-SwXRAfPm1AgsrDbEeq4PJq7_dRW_DljJxTL/exec";
 
 interface Counts {
 	guests: number;
@@ -31,6 +31,8 @@ export default function RSVPSection() {
 	const [formGuests, setFormGuests] = useState(1);
 	const [formContact, setFormContact] = useState("");
 	const [playSports, setPlaySports] = useState(false);
+	const [formHasChildren, setFormHasChildren] = useState(false);
+	const [formChildrenCount, setFormChildrenCount] = useState(1);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 	const [submitError, setSubmitError] = useState("");
@@ -52,12 +54,14 @@ export default function RSVPSection() {
 				method: "POST",
 				mode: "no-cors",
 				headers: { "Content-Type": "text/plain" },
-				body: JSON.stringify({
-					name: formName.trim(),
-					guestsCount: formGuests,
-					contact: formContact.trim(),
-					willPlaySports: playSports,
-				}),
+			body: JSON.stringify({
+				name: formName.trim(),
+				guestsCount: formGuests,
+				contact: formContact.trim(),
+				willPlaySports: playSports,
+				hasChildren: formHasChildren,
+				childrenCount: formHasChildren ? formChildrenCount : 0,
+			}),
 			});
 
 			setIsSubmitSuccess(true);
@@ -68,6 +72,8 @@ export default function RSVPSection() {
 				setFormGuests(1);
 				setFormContact("");
 				setPlaySports(false);
+				setFormHasChildren(false);
+				setFormChildrenCount(1);
 				setIsSubmitSuccess(false);
 			}, 3000);
 		} catch {
@@ -215,23 +221,95 @@ export default function RSVPSection() {
 								</div>
 							</div>
 
-							<div className="p-4 bg-[#FFF3EB] rounded-2xl space-y-4 border border-[#D0D0FB]/30">
-								<div className="flex items-center gap-3">
-									<input
-										id="form-sports"
-										type="checkbox"
-										checked={playSports}
-										onChange={(e) => setPlaySports(e.target.checked)}
-										className="w-4.5 h-4.5 rounded border-[#D0D0FB] text-[#03402C] focus:ring-[#03402C] accent-[#03402C]"
-									/>
-									<label
-										htmlFor="form-sports"
-										className="text-xs sm:text-sm text-[#0B0B26]/70 select-none cursor-pointer leading-none font-body"
-									>
-										Хочу участвовать в играх Дыгына!
-									</label>
-								</div>
+						<div className="p-4 bg-[#FFF3EB] rounded-2xl space-y-4 border border-[#D0D0FB]/30">
+							<div className="flex items-center gap-3">
+								<input
+									id="form-sports"
+									type="checkbox"
+									checked={playSports}
+									onChange={(e) => setPlaySports(e.target.checked)}
+									className="w-4.5 h-4.5 rounded border-[#D0D0FB] text-[#03402C] focus:ring-[#03402C] accent-[#03402C]"
+								/>
+								<label
+									htmlFor="form-sports"
+									className="text-xs sm:text-sm text-[#0B0B26]/70 select-none cursor-pointer leading-none font-body"
+								>
+									Хочу участвовать в играх Дыгына!
+								</label>
 							</div>
+
+							<div className="flex items-center gap-3">
+								<input
+									id="form-children"
+									type="checkbox"
+									checked={formHasChildren}
+									onChange={(e) => setFormHasChildren(e.target.checked)}
+									className="w-4.5 h-4.5 rounded border-[#D0D0FB] text-[#03402C] focus:ring-[#03402C] accent-[#03402C]"
+								/>
+								<label
+									htmlFor="form-children"
+									className="text-xs sm:text-sm text-[#0B0B26]/70 select-none cursor-pointer leading-none font-body"
+								>
+									Буду с детьми
+								</label>
+							</div>
+
+							{formHasChildren && (
+								<motion.div
+									initial={{ opacity: 0, height: 0 }}
+									animate={{ opacity: 1, height: "auto" }}
+									exit={{ opacity: 0, height: 0 }}
+									className="overflow-hidden"
+								>
+									<div className="pl-7 space-y-2">
+										<label
+											htmlFor="form-children-count"
+											className="block text-xs font-body font-bold tracking-wider text-[#0B0B26]/60 uppercase"
+										>
+											Сколько детей
+										</label>
+										<div className="relative flex items-center bg-white border border-[#D0D0FB]/50 rounded-2xl">
+											<button
+												type="button"
+												onClick={() =>
+													setFormChildrenCount(
+														Math.max(1, formChildrenCount - 1),
+													)
+												}
+												className="px-4 py-3 hover:bg-[#D0D0FB]/20 text-[#0B0B26]/50 transition text-lg font-bold rounded-l-2xl"
+											>
+												-
+											</button>
+											<input
+												id="form-children-count"
+												type="number"
+												required
+												min={1}
+												max={10}
+												value={formChildrenCount}
+												onChange={(e) =>
+													setFormChildrenCount(
+														parseInt(e.target.value) || 1,
+													)
+												}
+												className="w-full py-3 bg-transparent outline-none text-center text-sm font-bold font-body"
+											/>
+											<button
+												type="button"
+												onClick={() =>
+													setFormChildrenCount(
+														Math.min(10, formChildrenCount + 1),
+													)
+												}
+												className="px-4 py-3 hover:bg-[#D0D0FB]/20 text-[#0B0B26]/50 transition text-lg font-bold rounded-r-2xl"
+											>
+												+
+											</button>
+										</div>
+									</div>
+								</motion.div>
+							)}
+						</div>
 
 							{submitError && (
 								<p className="text-xs text-[#FC440F] font-body text-center">

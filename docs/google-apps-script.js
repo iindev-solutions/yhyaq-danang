@@ -1,5 +1,6 @@
 // YHYAQ Danang RSVP — Google Apps Script
-// 1. Создай Google Sheet с колонками: A=Timestamp, B=Name, C=Guests, D=Contact, E=PlaySports
+// 1. Создай Google Sheet с колонками:
+//    A=Timestamp, B=Name, C=Guests, D=Contact, E=PlaySports, F=HasChildren, G=ChildrenCount
 // 2. Extensions → Apps Script → вставь этот код
 // 3. Deploy → New deployment → Web app → Anyone → Deploy
 // 4. Полученный URL вставь в RSVPSection.tsx вместо GOOGLE_SCRIPT_URL_PLACEHOLDER
@@ -15,12 +16,17 @@ function doPost(e) {
     }
 
     const data = JSON.parse(e.postData.contents);
+    const hasChildren = data.hasChildren === true;
+    const childrenCount = hasChildren ? Number(data.childrenCount) || 0 : 0;
+
     sheet.appendRow([
       new Date(),
       data.name,
       data.guestsCount,
       data.contact,
       data.willPlaySports ? "Да" : "Нет",
+      hasChildren ? "Да" : "Нет",
+      childrenCount,
     ]);
 
     return respond({ success: true });

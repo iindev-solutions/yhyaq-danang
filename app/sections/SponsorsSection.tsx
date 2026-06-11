@@ -1,9 +1,29 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Plus } from "lucide-react";
 
-const SPONSOR_COUNT = 6;
+const SPONSORS = [
+	{
+		name: "ykt.ru",
+		logo: "/sponsors/ykt_sponsor.jpg",
+		url: "https://ykt.ru",
+		description: "Цифровая экосистема сервисов для жителей и гостей Якутии. Большой вклад в развитие фестиваля",
+		ceo: { name: "Владислав Петров", url: "https://www.instagram.com/vladislav.ykt/" },
+	},
+	{
+		name: "Столовка",
+		logo: "/sponsors/stolovka.jpg",
+		url: "https://t.me/stolovka_vn",
+		description: "Мы готовим блюда, которые напомнят Вам о домашнем уюте. Вкусно как дома",
+	},
+	{
+		name: "movemi",
+		logo: "/sponsors/movemi.jpg",
+		url: "https://t.me/childreninSportDanang",
+		description: "Занятия для детей от 4 до 15 лет",
+		instagram: { handle: "@movemi_danang", url: "https://www.instagram.com/movemi_danang/" },
+	},
+];
 
 export default function SponsorsSection() {
 	return (
@@ -28,20 +48,65 @@ export default function SponsorsSection() {
 					</p>
 				</div>
 
-				<div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-					{Array.from({ length: SPONSOR_COUNT }).map((_, i) => (
-						<motion.div
-							key={i}
-							className="bg-white/5 border border-white/10 rounded-2xl aspect-square flex flex-col items-center justify-center gap-3 hover:bg-white/10 hover:border-[#0BDA51]/30 transition-all duration-300 cursor-pointer"
-							whileHover={{ scale: 1.05 }}
+				<div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+					{SPONSORS.map((sponsor) => (
+						<motion.a
+							key={sponsor.name}
+							href={sponsor.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							className={`group bg-white/5 border rounded-2xl flex flex-col items-center justify-center gap-4 p-6 transition-all duration-300 cursor-pointer ${
+								sponsor.ceo
+									? "border-[#E3FF00]/30 hover:border-[#E3FF00]/60 hover:bg-white/10"
+									: "border-white/10 hover:border-[#0BDA51]/30 hover:bg-white/10"
+							}`}
+							whileHover={{ scale: 1.03 }}
 						>
-							<div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-								<Plus className="w-5 h-5 text-[#0BDA51]" />
+							<div className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center overflow-hidden rounded-full">
+								<img
+									src={sponsor.logo}
+									alt={sponsor.name}
+									className="max-h-full max-w-full object-contain"
+									loading="lazy"
+								/>
 							</div>
-							<span className="text-[10px] text-white/40 font-body font-bold text-center px-3 leading-tight">
-								Тут могла бы быть ваша компания
-							</span>
-						</motion.div>
+							<div className="text-center space-y-2">
+								<h4 className="font-display text-lg sm:text-xl font-black text-white tracking-tight">
+									{sponsor.name}
+								</h4>
+								<p className="text-[11px] sm:text-xs text-[#CEFDDE]/60 font-body leading-relaxed">
+									{sponsor.description}
+								</p>
+								{sponsor.ceo && (
+									<p className="text-[11px] sm:text-xs font-body">
+										<span className="text-[#CEFDDE]/50">CEO — </span>
+										<a
+											href={sponsor.ceo.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors"
+											onClick={(e) => e.stopPropagation()}
+										>
+											{sponsor.ceo.name}
+										</a>
+									</p>
+								)}
+								{sponsor.instagram && (
+									<p className="text-[11px] sm:text-xs font-body">
+										<span className="text-[#CEFDDE]/50">Instagram — </span>
+										<a
+											href={sponsor.instagram.url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors"
+											onClick={(e) => e.stopPropagation()}
+										>
+											{sponsor.instagram.handle}
+										</a>
+									</p>
+								)}
+							</div>
+						</motion.a>
 					))}
 				</div>
 

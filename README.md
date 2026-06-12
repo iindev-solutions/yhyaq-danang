@@ -27,7 +27,7 @@ npm run build    # → out/
 
 ## Деплой
 
-GitHub Pages через Actions — автодеплой при пуше в `v2`.
+GitHub Pages через Actions - автодеплой при пуше в `v2`.
 
 ## RSVP
 

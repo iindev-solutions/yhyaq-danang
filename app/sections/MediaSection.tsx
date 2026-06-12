@@ -105,7 +105,7 @@ export default function MediaSection({ isGlobalAudioPlaying, onGlobalAudioPause,
 						Как это было
 					</h3>
 					<p className="text-[#0B0B26]/50 text-sm max-w-md mx-auto font-body">
-						Ысыах в Дананге 2025 — видео и фото с прошлогоднего фестиваля
+						Ысыах в Дананге 2025 - видео и фото с прошлогоднего фестиваля
 					</p>
 				</div>
 

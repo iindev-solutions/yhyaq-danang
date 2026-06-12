@@ -1,4 +1,4 @@
-// YHYAQ Danang RSVP — Google Apps Script
+// YHYAQ Danang RSVP - Google Apps Script
 // 1. Создай Google Sheet с колонками:
 //    A=Timestamp, B=Name, C=Guests, D=Contact, E=PlaySports, F=HasChildren, G=ChildrenCount
 // 2. Extensions → Apps Script → вставь этот код

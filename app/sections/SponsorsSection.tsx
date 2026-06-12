@@ -15,6 +15,7 @@ const SPONSORS = [
 		logo: "/sponsors/stolovka.jpg",
 		url: "https://t.me/stolovka_vn",
 		description: "Мы готовим блюда, которые напомнят Вам о домашнем уюте. Вкусно как дома",
+		telegram: { handle: "stolovka_vn", url: "https://t.me/stolovka_vn" },
 	},
 	{
 		name: "movemi",
@@ -22,6 +23,13 @@ const SPONSORS = [
 		url: "https://t.me/childreninSportDanang",
 		description: "Занятия для детей от 4 до 15 лет",
 		instagram: { handle: "@movemi_danang", url: "https://www.instagram.com/movemi_danang/" },
+	},
+	{
+		name: "Happy Steps",
+		logo: "/sponsors/happy-steps.png",
+		url: "https://www.instagram.com/children_danang",
+		description: "Танцы для детей в Дананге от 2,5 до 10 лет. Ритмопластика, хореография, растяжка, ОФП",
+		instagram: { handle: "@children_danang", url: "https://www.instagram.com/children_danang" },
 	},
 ];
 
@@ -48,14 +56,14 @@ export default function SponsorsSection() {
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+				<div className="flex flex-wrap justify-center gap-6">
 					{SPONSORS.map((sponsor) => (
 						<motion.a
 							key={sponsor.name}
 							href={sponsor.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className={`group bg-white/5 border rounded-2xl flex flex-col items-center justify-center gap-4 p-6 transition-all duration-300 cursor-pointer ${
+							className={`group bg-white/5 border rounded-2xl flex flex-col items-center justify-center gap-4 p-6 w-full sm:w-[calc(33.333%-16px)] transition-all duration-300 cursor-pointer ${
 								sponsor.ceo
 									? "border-[#E3FF00]/30 hover:border-[#E3FF00]/60 hover:bg-white/10"
 									: "border-white/10 hover:border-[#0BDA51]/30 hover:bg-white/10"
@@ -79,30 +87,35 @@ export default function SponsorsSection() {
 								</p>
 								{sponsor.ceo && (
 									<p className="text-[11px] sm:text-xs font-body">
-										<span className="text-[#CEFDDE]/50">CEO — </span>
-										<a
-											href={sponsor.ceo.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors"
-											onClick={(e) => e.stopPropagation()}
+										<span className="text-[#CEFDDE]/50">CEO - </span>
+										<span
+											onClick={(e) => { e.stopPropagation(); window.open(sponsor.ceo!.url, '_blank', 'noopener'); }}
+											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors cursor-pointer"
 										>
 											{sponsor.ceo.name}
-										</a>
+										</span>
 									</p>
 								)}
 								{sponsor.instagram && (
 									<p className="text-[11px] sm:text-xs font-body">
-										<span className="text-[#CEFDDE]/50">Instagram — </span>
-										<a
-											href={sponsor.instagram.url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors"
-											onClick={(e) => e.stopPropagation()}
+										<span className="text-[#CEFDDE]/50">Instagram - </span>
+										<span
+											onClick={(e) => { e.stopPropagation(); window.open(sponsor.instagram!.url, '_blank', 'noopener'); }}
+											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors cursor-pointer"
 										>
 											{sponsor.instagram.handle}
-										</a>
+										</span>
+									</p>
+								)}
+								{sponsor.telegram && (
+									<p className="text-[11px] sm:text-xs font-body">
+										<span className="text-[#CEFDDE]/50">Telegram - </span>
+										<span
+											onClick={(e) => { e.stopPropagation(); window.open(sponsor.telegram!.url, '_blank', 'noopener'); }}
+											className="text-[#E3FF00] underline underline-offset-2 hover:text-[#E3FF00]/80 transition-colors cursor-pointer"
+										>
+											{sponsor.telegram.handle}
+										</span>
 									</p>
 								)}
 							</div>

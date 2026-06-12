@@ -6,11 +6,11 @@ import { Info, CheckCircle2, MapPin } from "lucide-react";
 const tips = [
 	{
 		title: "Вход",
-		text: "~130 000 VND. Место проведения — KING GARDEN CAMPING.",
+		text: "~130 000 VND. Место проведения - KING GARDEN CAMPING.",
 	},
 	{
 		title: "Трансфер",
-		text: "Возможно будет организован трансфер — следите за новостями.",
+		text: "Возможно будет организован трансфер - следите за новостями.",
 	},
 	{
 		title: "Что взять с собой",
@@ -18,7 +18,7 @@ const tips = [
 	},
 	{
 		title: "Для детей",
-		text: "Программа детских активностей уточняется — следите за обновлениями.",
+		text: "Программа детских активностей уточняется - следите за обновлениями.",
 	},
 	{
 		title: "Игры Дыгына",
@@ -134,7 +134,7 @@ export default function MapSection() {
 							allowFullScreen
 							loading="lazy"
 							referrerPolicy="no-referrer-when-downgrade"
-							title="Место проведения Ысыах — KING GARDEN CAMPING"
+							title="Место проведения Ысыах - KING GARDEN CAMPING"
 							className="w-full h-full"
 						/>
 					</div>

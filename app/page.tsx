@@ -33,7 +33,7 @@ export default function YhyaqInvitation() {
   useEffect(() => {
     if (isEntered && isPlaying) {
       mp3AudioRef.current?.play().catch(() => {
-        // Auto-play blocked — user will toggle manually
+        // Auto-play blocked - user will toggle manually
       });
     } else {
       mp3AudioRef.current?.pause();

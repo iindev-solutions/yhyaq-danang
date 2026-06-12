@@ -33,7 +33,7 @@ export default function SolarGateway({ onEnter }: SolarGatewayProps) {
 						}
 					}}
 				>
-					{/* Photo — fades out first */}
+					{/* Photo - fades out first */}
 					<motion.img
 						src="/loader.webp"
 						alt=""
@@ -43,7 +43,7 @@ export default function SolarGateway({ onEnter }: SolarGatewayProps) {
 						transition={{ duration: 1.0, ease: "easeOut", delay: 1.2 }}
 					/>
 
-					{/* Urasa SVG — fades in after photo starts fading */}
+					{/* Urasa SVG - fades in after photo starts fading */}
 					<motion.div
 						className="flex items-center justify-center -translate-y-[10%]"
 						initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ export default function SolarGateway({ onEnter }: SolarGatewayProps) {
 						/>
 					</motion.div>
 
-					{/* Wordmark — after urasa */}
+					{/* Wordmark - after urasa */}
 					<motion.img
 						src="/assets/yhq-wordmark.svg"
 						alt="YHYAQ"

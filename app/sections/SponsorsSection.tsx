@@ -8,7 +8,17 @@ const SPONSORS = [
 		logo: "/sponsors/ykt_sponsor.jpg",
 		url: "https://ykt.ru",
 		description: "Цифровая экосистема сервисов для жителей и гостей Якутии. Большой вклад в развитие фестиваля",
+		premium: true,
 		ceo: { name: "Владислав Петров", url: "https://www.instagram.com/vladislav.ykt/" },
+	},
+	{
+		name: "92 billiards",
+		logo: "/sponsors/92-bida.png",
+		url: "https://www.instagram.com/92billiards_pubcorner",
+		description: "Лучший бильярд в Дананге — non-smoke зона, атмосфера и кайф от игры",
+		premium: true,
+		address: "21,23 Khuê Mỹ Đông 3, Đà Nẵng",
+		instagram: { handle: "@92billiards_pubcorner", url: "https://www.instagram.com/92billiards_pubcorner" },
 	},
 	{
 		name: "Столовка",
@@ -63,18 +73,18 @@ export default function SponsorsSection() {
 							href={sponsor.url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className={`group bg-white/5 border rounded-2xl flex flex-col items-center justify-center gap-4 p-6 w-full sm:w-[calc(33.333%-16px)] transition-all duration-300 cursor-pointer ${
-								sponsor.ceo
-									? "border-[#E3FF00]/30 hover:border-[#E3FF00]/60 hover:bg-white/10"
-									: "border-white/10 hover:border-[#0BDA51]/30 hover:bg-white/10"
-							}`}
+						className={`group bg-white/5 border rounded-2xl flex flex-col items-center justify-center gap-4 p-6 w-full sm:w-[calc(33.333%-16px)] transition-all duration-300 cursor-pointer ${
+							sponsor.premium
+								? "border-[#E3FF00]/30 hover:border-[#E3FF00]/60 hover:bg-white/10"
+								: "border-white/10 hover:border-[#0BDA51]/30 hover:bg-white/10"
+						}`}
 							whileHover={{ scale: 1.03 }}
 						>
 							<div className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center overflow-hidden rounded-full">
 								<img
 									src={sponsor.logo}
 									alt={sponsor.name}
-									className="max-h-full max-w-full object-contain"
+									className="w-full h-full object-cover"
 									loading="lazy"
 								/>
 							</div>
@@ -116,6 +126,11 @@ export default function SponsorsSection() {
 										>
 											{sponsor.telegram.handle}
 										</span>
+									</p>
+								)}
+								{sponsor.address && (
+									<p className="text-[11px] sm:text-xs font-body text-[#CEFDDE]/50">
+										📍 {sponsor.address}
 									</p>
 								)}
 							</div>

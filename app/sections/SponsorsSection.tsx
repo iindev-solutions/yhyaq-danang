@@ -41,6 +41,13 @@ const SPONSORS = [
 		description: "Танцы для детей в Дананге от 2,5 до 10 лет. Ритмопластика, хореография, растяжка, ОФП",
 		instagram: { handle: "@children_danang", url: "https://www.instagram.com/children_danang" },
 	},
+	{
+		name: "Острог",
+		logo: "/sponsors/ostrog.jpg",
+		url: "https://www.instagram.com/ostrog_store/",
+		description: "ТОЛСТОВКИ | КОСТЮМЫ | ХУДИ. Местное производство. Услуги машинной вышивки, термо- и DTF переноса. Качественные базовые вещи из премиальной ткани",
+		instagram: { handle: "@ostrog_store", url: "https://www.instagram.com/ostrog_store/" },
+	},
 ];
 
 export default function SponsorsSection() {
